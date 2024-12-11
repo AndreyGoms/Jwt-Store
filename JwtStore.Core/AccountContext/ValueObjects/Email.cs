@@ -27,6 +27,11 @@ public partial class Email : ValueObject
 
     public string Address { get; }
     public string Hash => Address.ToBase64();
+    public Verification Verification {get; private set;} = new();
+
+    public void ResendVerification() {
+        Verification = new Verification();
+    }
 
     //Se tentar passar um email ele o transforma em string
     public static implicit operator string(Email email) 
